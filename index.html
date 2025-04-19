@@ -6,11 +6,13 @@
     <style>
     html, body { margin: 0; background-color: #222; }
 
-    .map {
+    #map {
         display: flex;
+        transition: transform 0.3s;
+        transform-origin: center;
     }
 
-    .map > div {
+    #map > div {
         position: relative;
     }
 
@@ -22,20 +24,18 @@
         border: 1px solid black;
         background: red;
         transform: translate(-50%, -50%);
+        width: 150px;
+		height: 150px;
     }
 
     .Break_Mine_Kailo3 {
-        background: url(meteorit.png);
+        background: url(Meteorit.png);
 		background-size: cover;
-		width: 150px;
-		height: 150px;
     }
 
     .Break_Mine_Kailo2 {
         background: url(ruda.png);
 		background-size: cover;
-		width: 150px;
-		height: 150px;
     }
 
     #mapimg {
@@ -47,6 +47,9 @@
         position: fixed !important;
         z-index: 10;
         top: 50%;
+        background: rgba(255, 255, 255, 0.192);
+        padding: 20px;
+        margin-left: 30px;
     }
     .Menu li {
         display: flex;
@@ -62,6 +65,18 @@
         width: 200px;
         height: 200px;
     }
+    #Zoom_block {
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 50px 50px 0 0;
+        z-index: 10;
+    }
+    #Zoom_block button {
+        width: 200px;
+        height: 200px;
+        font-size: 100px;
+    }
     </style>
 </head>
 <body>
@@ -71,14 +86,17 @@
             <li><input type="checkbox" value="Break_Mine_Kailo3" onchange="checkbox_changed(this)" checked/><img src="meteorit.png" alt=""></li>
         </ul>
     </div>
-    <div class="map">
-		
+    <div id="Zoom_block">
+        <button onclick="zoom('+');">+</button>
+        <button onclick="zoom('-');">-</button>
+    </div>
+    <div id="map">
         <div>
             <img id="mapimg" src="kailo.png" alt="Norn Map">
     </div>
     </div>
     <script>
-        const mapContainer = document.querySelector('.map > div')
+        const mapContainer = document.querySelector('#map > div')
         const mapSize = 8000; // .umap AreaBounds.BoxExtent * 2
         const center = mapSize / 2;
         const offset = {
@@ -132,8 +150,6 @@
             marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
             marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
 
-            console.log(marker);
-
             mapContainer.appendChild(marker)
         })
 
@@ -172,16 +188,42 @@
         addMarker(p);
     });
 
-    function addMarker (p) {
-        const marker = document.createElement('div')
-        marker.classList.add('marker');
-        marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
-        marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
+function addMarker (p) {
+    const marker = document.createElement('div')
+    marker.classList.add('marker');
+    marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
+    marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
 
-        console.log(marker);
+    mapContainer.appendChild(marker)
+}
 
-        mapContainer.appendChild(marker)
+   
+
+
+    let scale = 1;
+    function zoom(mode){
+        if(mode == '+')
+        {
+            scale += 0.2;
+        }
+        else
+        {
+            scale -= 0.2;
+        }
+        scale = Math.min(Math.max(scale, 0.2), 3);
+        if(scale<1)
+        scale = 1;
+        document.getElementById('map').style.transform = `scale(${scale})`;
+
+        let markers = document.getElementsByClassName("marker");
+        for (let i = 0; i < markers.length; i++) {
+                value = (150-(scale*25));
+                markers[i].style.width = value + "px";
+                markers[i].style.height = value + "px";
+            }
+
     }
+
 
     </script>
 
