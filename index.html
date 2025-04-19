@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToF Map</title>
+    <style>
+    html, body { margin: 0; background-color: #222; }
+
+    .map {
+        display: flex;
+    }
+
+    .map > div {
+        position: relative;
+    }
+
+    .marker {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid black;
+        background: red;
+        transform: translate(-50%, -50%);
+    }
+
+    .Break_Mine_Kailo3 {
+        background: url(Meteorit.png);
+		background-size: cover;
+		width: 150px;
+		height: 150px;
+    }
+
+    .Break_Mine_Kailo2 {
+        background: url(ruda.png);
+		background-size: cover;
+		width: 150px;
+		height: 150px;
+    }
+
+    #mapimg {
+        width: 8000px;
+        height: 8000px;
+        display: block;
+    }
+    .Menu{
+        position: fixed !important;
+        z-index: 10;
+        top: 50%;
+    }
+    .Menu li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .Menu input{
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+    }
+    .Menu img{
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div class="Menu">
+        <ul>
+            <li><input type="checkbox" value="Break_Mine_Kailo2" onchange="checkbox_changed(this)" checked/><img src="ruda.png" alt=""></li>
+            <li><input type="checkbox" value="Break_Mine_Kailo3" onchange="checkbox_changed(this)" checked/><img src="Meteorit.png" alt=""></li>
+        </ul>
+    </div>
+    <div class="map">
+		
+        <div>
+            <img id="mapimg" src="kailo.png" alt="Norn Map">
+    </div>
+    </div>
+    <script>
+        const mapContainer = document.querySelector('.map > div')
+        const mapSize = 8000; // .umap AreaBounds.BoxExtent * 2
+        const center = mapSize / 2;
+        const offset = {
+            x: -30410,
+            y: 85825
+        } // .umap AreaBounds.RelativeLocation
+
+        var mapPoints = [
+        {"x":156560.92,"y":-5745.534,"reward":"Break_Mine_Kailo3"},
+        {"x":-67499.195,"y":-178242.55,"reward":"Break_Mine_Kailo3"},
+        {"x":-13568.41,"y":-186655.02,"reward":"Break_Mine_Kailo3"},
+        {"x":33151.973,"y":-238655.31,"reward":"Break_Mine_Kailo3"},
+        {"x":64624.1,"y":-251002.08,"reward":"Break_Mine_Kailo3"},
+        {"x":115775.375,"y":-239078.22,"reward":"Break_Mine_Kailo3"},
+        {"x":197995.53,"y":-142428.66,"reward":"Break_Mine_Kailo3"},
+        {"x":148804.92,"y":-124859.5,"reward":"Break_Mine_Kailo3"},
+        {"x":252025.03,"y":-97796.08,"reward":"Break_Mine_Kailo3"},
+        {"x":202980.3,"y":-62026.516,"reward":"Break_Mine_Kailo3"},
+        {"x":189979.6,"y":35203.875,"reward":"Break_Mine_Kailo3"},
+        {"x":145594.6,"y":41995.637,"reward":"Break_Mine_Kailo3"},
+        {"x":73233.61,"y":17934.268,"reward":"Break_Mine_Kailo3"},
+        {"x":7401.1816,"y":33465.668,"reward":"Break_Mine_Kailo3"},
+        {"x":-60277.73,"y":23469.762,"reward":"Break_Mine_Kailo3"},
+        {"x":-56029.547,"y":-142310.86,"reward":"Break_Mine_Kailo2"},
+        {"x":-107621.98,"y":-193915.23,"reward":"Break_Mine_Kailo2"},
+        {"x":-23525.787,"y":-196987.92,"reward":"Break_Mine_Kailo2"},
+        {"x":-32197.861,"y":-171431.69,"reward":"Break_Mine_Kailo2"},
+        {"x":5064.642,"y":-239969.27,"reward":"Break_Mine_Kailo2"},
+        {"x":64618.176,"y":-258204.03,"reward":"Break_Mine_Kailo2"},
+        {"x":93126.56,"y":-242680.39,"reward":"Break_Mine_Kailo2"},
+        {"x":131382.14,"y":-233142.2,"reward":"Break_Mine_Kailo2"},
+        {"x":178493.27,"y":-200570.11,"reward":"Break_Mine_Kailo2"},
+        {"x":248319.53,"y":-180522.89,"reward":"Break_Mine_Kailo2"},
+        {"x":216112.67,"y":-157168.08,"reward":"Break_Mine_Kailo2"},
+        {"x":213994.52,"y":-113831.055,"reward":"Break_Mine_Kailo2"},
+        {"x":209938.39,"y":-61734.098,"reward":"Break_Mine_Kailo2"},
+        {"x":224039.16,"y":-29578.367,"reward":"Break_Mine_Kailo2"},
+        {"x":206868.0,"y":8706.192,"reward":"Break_Mine_Kailo2"},
+        {"x":120469.61,"y":44090.42,"reward":"Break_Mine_Kailo2"},
+        {"x":37690.41,"y":82280.87,"reward":"Break_Mine_Kailo2"},
+        {"x":-10616.244,"y":77154.37,"reward":"Break_Mine_Kailo2"},
+        {"x":-87025.68,"y":6454.5874,"reward":"Break_Mine_Kailo2"},
+        {"x":-88914.88,"y":-238403.55,"reward":"Break_Mine_Kailo2"},
+        {"x":-27804.943,"y":-277444.44,"reward":"Break_Mine_Kailo2"},
+        {"x":-65004.25,"y":-236341.95,"reward":"Break_Mine_Kailo2"}];
+
+        mapPoints.forEach(p => {
+            const marker = document.createElement('div')
+            marker.classList.add('marker');
+            marker.classList.add(p.reward)
+            marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
+            marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
+
+            console.log(marker);
+
+            mapContainer.appendChild(marker)
+        })
+
+
+
+        function checkbox_changed(checkbox) {
+        const statusText = document.getElementById('status');
+        const checkboxValue = checkbox.value;
+        if (checkbox.checked) {
+            const elements = document.getElementsByClassName(checkboxValue);
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].style.display = 'block';
+            }
+        } else {
+            const elements = document.getElementsByClassName(checkboxValue);
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].style.display = 'none';
+            }
+        }
+    }
+
+    const mapContainer2 = document.getElementById("mapimg");
+
+
+    mapContainer2.addEventListener('dblclick', (event) => {
+        const rect = mapContainer.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const p = {
+            x: (x-center)*100-offset.x,
+            y: (y-center)*100-offset.y,
+            reward: 'Break_Mine_Kailo3'
+        };
+        mapPoints.push({ x: p.x, y: p.y, reward: p.reward });
+        addMarker(p);
+    });
+
+    function addMarker (p) {
+        const marker = document.createElement('div')
+        marker.classList.add('marker');
+        marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
+        marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
+
+        console.log(marker);
+
+        mapContainer.appendChild(marker)
+    }
+
+    </script>
+
+</body></html>
