@@ -217,7 +217,11 @@ function addMarker (p) {
 
         let markers = document.getElementsByClassName("marker");
         for (let i = 0; i < markers.length; i++) {
-                value = (150-(scale*25));
+                value = (150-(scale*50))*2;
+                if(value<50)
+                    value = 50;
+                if(value>150)
+                    value=150;
                 markers[i].style.width = value + "px";
                 markers[i].style.height = value + "px";
             }
