@@ -28,6 +28,11 @@
 		height: 150px;
     }
 
+    .Break_Mine_Kailo4 {
+        background: url(ruda_2.png);
+		background-size: cover;
+    }
+
     .Break_Mine_Kailo3 {
         background: url(meteorit.png);
 		background-size: cover;
@@ -83,13 +88,63 @@
         font-size: 67px;
 
     }
+    input[type="radio"] {
+        display: none;
+    }
+    .radio-label {
+        display: block;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .points {
+        z-index: 10;
+        display: flex;
+        position: fixed;
+        left: 50%;
+        bottom: 1%;
+        transform: translate(-50%, 0%);
+    }
+    .point {
+
+    }
+    .point img {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .radio-label {
+        border: 25px solid transparent;
+    }
+
+    .point input[type="radio"]:checked + .radio-label {
+        border: 25px solid green;
+    }
     </style>
 </head>
 <body>
+    <div class="points">
+        <div class="point">
+            <input type="radio" id="ruda" name="imageChoice" value="Break_Mine_Kailo2" checked>
+            <label class="radio-label" for="ruda"><img src="ruda.png" alt="Radio 1"></label>
+        </div>
+        <div class="point">
+            <input type="radio" id="meteorit" name="imageChoice" value="Break_Mine_Kailo3">
+            <label class="radio-label" for="meteorit"><img src="meteorit.png" alt="Radio 2"></label>
+        </div>
+        <div class="point">
+            <input type="radio" id="ruda_2" name="imageChoice" value="Break_Mine_Kailo4">
+            <label class="radio-label" for="ruda_2"><img src="ruda_2.png" alt="Radio 2"></label>
+        </div>
+        <!-- <div class="point">
+            <input type="radio" id="radio3" name="imageChoice" value="ruda3">
+            <label class="radio-label" for="radio3"><img src="ruda.png" alt="Radio 3"></label>
+        </div> -->
+    </div>
     <div class="Menu">
         <ul>
             <li><input type="checkbox" value="Break_Mine_Kailo2" onchange="checkbox_changed(this)" checked/><img src="ruda.png" alt=""></li>
             <li><input type="checkbox" value="Break_Mine_Kailo3" onchange="checkbox_changed(this)" checked/><img src="meteorit.png" alt=""></li>
+            <li><input type="checkbox" value="Break_Mine_Kailo4" onchange="checkbox_changed(this)" checked/><img src="ruda_2.png" alt=""></li>
         </ul>
         <button id="saveBtn">Сохранить</button>
     </div>
@@ -97,10 +152,12 @@
         <button onclick="zoom('+');">+</button>
         <button onclick="zoom('-');">-</button>
     </div>
+   
     <div id="map">
+
         <div>
             <img id="mapimg" src="kailo.png" alt="Norn Map">
-    </div>
+        </div>
     </div>
     <script>
         const mapContainer = document.querySelector('#map > div')
@@ -150,15 +207,13 @@
         {"x":-27804.943,"y":-277444.44,"reward":"Break_Mine_Kailo2"},
         {"x":-65004.25,"y":-236341.95,"reward":"Break_Mine_Kailo2"}];
 
-        mapPoints.forEach(p => {
-            const marker = document.createElement('div')
-            marker.classList.add('marker');
-            marker.classList.add(p.reward)
-            marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
-            marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
+        var markers = [];
 
-            mapContainer.appendChild(marker)
+        mapPoints.forEach(p => {
+            addMarker(p);
         })
+        
+
 
 
 
@@ -180,8 +235,23 @@
 
     const mapContainer2 = document.getElementById("mapimg");
 
-
     mapContainer2.addEventListener('dblclick', (event) => {
+
+        const radios = document.getElementsByName('imageChoice');
+        let selectedValue;
+        
+        for (const radio of radios) {
+            if (radio.checked) {
+                selectedValue = radio.value;
+                break;
+            }
+        }
+
+        var rewards;
+
+        if(selectedValue)
+            rewards=selectedValue;       
+
         const rect = mapContainer.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
@@ -189,23 +259,26 @@
         const p = {
             x: (x-center)*100-offset.x,
             y: (y-center)*100-offset.y,
-            reward: 'Break_Mine_Kailo3'
+            reward: rewards
         };
         mapPoints.push({ x: p.x, y: p.y, reward: p.reward });
         addMarker(p);
+
     });
 
-function addMarker (p) {
-    const marker = document.createElement('div')
-    marker.classList.add('marker');
-    marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
-    marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
+    function addMarker (p) {
+        const marker = document.createElement('div')
+        marker.classList.add('marker');
+        marker.classList.add(p.reward)
+        marker.style.top = `${center + (((p.y + offset.y) / 100))}px`
+        marker.style.left = `${center + (((p.x + offset.x) / 100))}px`
 
-    mapContainer.appendChild(marker)
-}
+        marker.onclick = () => {
+                marker.remove();
+            };
 
-   
-
+        mapContainer.appendChild(marker)
+    }
 
     let scale = 1;
     function zoom(mode){
@@ -235,6 +308,32 @@ function addMarker (p) {
 
     }
 
+    const radios = document.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                var selval = document.getElementById(`${this.value}`);
+
+                console.log(`Radiobutton ${this.value} ${this.checked ? 'выбран' : 'не выбран'}`);
+            });
+        });
+
+ // Функция для сохранения данных в JSON-файл
+ function saveToFile(data) {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'mapPoints.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Обработчик для кнопки сохранения
+    document.getElementById('saveBtn').addEventListener('click', () => {
+        saveToFile(mapPoints);
+    });
 
     </script>
 
