@@ -294,6 +294,18 @@
         saveToFile(mapPoints);
     });
 
+ async function loadData() {
+            try {
+                const response = await fetch('data.json'); // Путь к вашему JSON файлу
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+            }
+        }
+        loadData();
+
+
     </script>
 
 </body></html>
