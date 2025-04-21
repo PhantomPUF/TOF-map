@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная Карта с Изображением</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .leaflet-control-attribution {
+            display: none;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Центрация карты по горизонтали */
+            align-items: center; /* Центрация карты по вертикали */
+            height: 100vh; /* Высота всего окна */
+        }
+
+        .map_zone {
+            width: 700px; /* Ширина зоны карты */
+            height: 700px; /* Высота зоны карты */
+            border: 2px solid #ccc; /* Граница карты */
+            border-radius: 10px; /* Скругленные углы */
+            overflow: hidden; /* Обрезка содержимого, выходящего за границы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для более красивого эффекта */
+        }
+
+        #map {
+            height: 100%; /* Высота карты занимает 100% зоны */
+            width: 100%; /* Ширина карты занимает 100% зоны */
+        }
+
+        .marker{
+            background-color: red;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            border: 2px solid #000;
+        }
+
+        .leaflet-image-layer {
+            width: 100%;
+        }
+
+        #ui {
+            position: absolute;
+            width: 100%;
+        }
+
+        #ui .Menu{
+            position: fixed !important;
+            z-index: 10;
+            top: 35%;
+            background: rgba(255, 255, 255, 0.192);
+            padding: 2px;
+            margin-left: 5px;
+        }
+
+        #ui .Menu ul {
+            padding: 0;
+        }
+
+        #ui .Menu li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #ui .Menu input{
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+        #ui .Menu img{
+            width: 50px;
+            height: 50px;
+        }
+        #ui #saveBtn{
+            width: 100%;
+            height: 50px;
+            font-size: 14px;
+
+        }
+        #ui input[type="radio"] {
+            display: none;
+        }
+        #ui .radio-label {
+            display: block;
+            cursor: pointer;
+            margin-right: 3px;
+        }
+        #ui .points {
+            z-index: 10;
+            display: flex;
+            position: fixed;
+            left: 50%;
+            bottom: 1%;
+            transform: translate(-50%, 0%);
+        }
+        #ui .point {
+
+        }
+        #ui .point img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        #ui .radio-label {
+            border: 5px solid transparent;
+        }
+
+        #ui .point input[type="radio"]:checked + .radio-label {
+            border: 5px solid green;
+        }
+
+
+    .Break_Mine_Kailo4 {
+        background: url(ruda_2.png);
+        background-size: cover;
+    }
+
+    .Break_Mine_Kailo3 {
+        background: url(meteorit.png);
+		background-size: cover;
+    }
+
+    .Break_Mine_Kailo2 {
+        background: url(ruda.png);
+		background-size: cover;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id="ui">
+        <div class="points">
+            <div class="point">
+                <input type="radio" id="ruda" name="imageChoice" value="Break_Mine_Kailo2" checked>
+                <label class="radio-label" for="ruda"><img src="ruda.png" alt="Radio 1"></label>
+            </div>
+            <div class="point">
+                <input type="radio" id="meteorit" name="imageChoice" value="Break_Mine_Kailo3">
+                <label class="radio-label" for="meteorit"><img src="meteorit.png" alt="Radio 2"></label>
+            </div>
+            <div class="point">
+                <input type="radio" id="ruda_2" name="imageChoice" value="Break_Mine_Kailo4">
+                <label class="radio-label" for="ruda_2"><img src="ruda_2.png" alt="Radio 2"></label>
+            </div>
+        </div>
+        <div class="Menu">
+            <ul>
+                <li><input type="checkbox" value="Break_Mine_Kailo2" onchange="checkbox_changed(this)" checked/><img src="ruda.png" alt=""></li>
+                <li><input type="checkbox" value="Break_Mine_Kailo3" onchange="checkbox_changed(this)" checked/><img src="meteorit.png" alt=""></li>
+                <li><input type="checkbox" value="Break_Mine_Kailo4" onchange="checkbox_changed(this)" checked/><img src="ruda_2.png" alt=""></li>
+            </ul>
+            <button id="saveBtn">Сохранить</button>
+        </div>
+    </div>
+
+    <div class="map_zone">
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Инициализация карты
+        const map = L.map('map', {
+            center: [0, 0],
+            zoom: 2,
+            minZoom: 2,
+            maxZoom: 5,
+            worldCopyJump: true
+        });
+
+        const markerSize = zoomLevel * 10;
+
+        const imageUrl = 'kailo.png';
+        //const imageBounds = [[map_size*-1, map_size*-1], [map_size, map_size]];
+        const imageBounds = [[-90, -180], [90, 180]];
+
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+        var mapPoints = [];
+
+        
+        mapPoints = [];
+
+        map.setMaxBounds(imageBounds);
+
+        const markers = [];
+
+        // Добавление меток
+
+        mapPoints.forEach(p => {
+            addMarker(p);
+        })
+
+
+
+        function addMarker (p) {
+            const zoomLevel = map.getZoom();
+           
+
+            const marker = L.divIcon({
+                className: `marker ${p.reward}`,
+                iconSize: [markerSize, markerSize],
+                iconAnchor: [markerSize / 2, markerSize / 2]
+            });
+
+
+            const newMarker = L.marker([p.y, p.x], { icon: marker }).addTo(map);
+
+            markers.push(newMarker);
+
+            newMarker.on('dblclick', function() {
+                map.removeLayer(newMarker);
+            });
+        }
+
+        map.on('dblclick', function(e) {
+
+            const radios = document.getElementsByName('imageChoice');
+            let selectedValue;
+            
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedValue = radio.value;
+                    break;
+                }
+            }
+
+            var rewards;
+
+            if(selectedValue)
+                rewards=selectedValue;
+
+            const zoomLevel = map.getZoom();
+
+            const marker = L.divIcon({
+                className: `marker ${rewards}`,
+                iconSize: [markerSize, markerSize],
+                iconAnchor: [markerSize / 2, markerSize / 2]
+            });
+
+
+            const newMarker = L.marker(e.latlng, { icon: marker }).addTo(map);
+
+            markers.push(newMarker);
+            mapPoints.push({ x: e.latlng.lng, y: e.latlng.lat, reward: rewards });
+
+            console.log(newMarker);
+
+            newMarker.on('dblclick', function() {
+                map.removeLayer(newMarker);
+            });
+
+            // L.popup()
+            //     .setLatLng(e.latlng)
+            //     .setContent('Координаты: ' + e.latlng.toString())
+            //     .openOn(map);
+        });
+
+        map.fitBounds(imageBounds);
+
+        map.on('zoomend', updateMarkerSizes);
+
+
+
+        // Функция обновления размеров маркеров
+        function updateMarkerSizes() {
+            const zoomLevel = map.getZoom();
+            
+            markers.forEach(marker => {
+                const currentClasses = marker.getElement().className;
+                marker.setIcon(L.divIcon({
+                    className: `${currentClasses} marker`,
+                    iconSize: [markerSize, markerSize], // Установка нового размера
+                    iconAnchor: [markerSize / 2, markerSize / 2]
+                }));
+            });
+        }
+
+        //UI
+        function checkbox_changed(checkbox) {
+            const statusText = document.getElementById('status');
+            const checkboxValue = checkbox.value;
+            if (checkbox.checked) {
+                const elements = document.getElementsByClassName(checkboxValue);
+                for (let i = 0; i < elements.length; i++) {
+                    elements[i].style.display = 'block';
+                }
+            } else {
+                const elements = document.getElementsByClassName(checkboxValue);
+                for (let i = 0; i < elements.length; i++) {
+                    elements[i].style.display = 'none';
+                }
+            }
+        }
+
+        const radios = document.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                var selval = document.getElementById(`${this.value}`);
+
+                console.log(`Radiobutton ${this.value} ${this.checked ? 'выбран' : 'не выбран'}`);
+            });
+        });
+
+
+         // Функция для сохранения данных в JSON-файл
+        function saveToFile(data) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mapPoints.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Обработчик для кнопки сохранения
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            saveToFile(mapPoints);
+        });
+
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json'); // Путь к вашему JSON файлу
+                const data = await response.json();
+                // Теперь вы можете использовать данные
+                data.forEach(location => {
+                    const [lat, lng] = location.coordinates;
+                    L.marker([lat, lng]).addTo(map)
+                        .bindPopup(location.name);
+                });
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+            }
+        }
+        
+        loadData();
+
+    </script>
+
+</body>
+
+</html>
