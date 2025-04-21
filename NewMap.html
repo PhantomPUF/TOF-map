@@ -333,11 +333,16 @@
                 const response = await fetch('data.json'); // Путь к вашему JSON файлу
                 const data = await response.json();
                 // Теперь вы можете использовать данные
-                data.forEach(location => {
-                    const [lat, lng] = location.coordinates;
-                    L.marker([lat, lng]).addTo(map)
-                        .bindPopup(location.name);
-                });
+                // data.forEach(location => {
+                //     const [lat, lng] = location.coordinates;
+                //     L.marker([lat, lng]).addTo(map)
+                //         .bindPopup(location.name);
+                // });
+
+                data.forEach(p => {
+                    addMarker(p);
+                })
+
             } catch (error) {
                 console.error('Ошибка загрузки данных:', error);
             }
