@@ -177,6 +177,7 @@
             worldCopyJump: true
         });
 
+        const zoomLevel = map.getZoom();
         const markerSize = zoomLevel * 10;
 
         const imageUrl = 'kailo.png';
@@ -203,7 +204,7 @@
 
 
         function addMarker (p) {
-            const zoomLevel = map.getZoom();
+            
            
 
             const marker = L.divIcon({
@@ -239,8 +240,6 @@
             if(selectedValue)
                 rewards=selectedValue;
 
-            const zoomLevel = map.getZoom();
-
             const marker = L.divIcon({
                 className: `marker ${rewards}`,
                 iconSize: [markerSize, markerSize],
@@ -272,9 +271,7 @@
 
 
         // Функция обновления размеров маркеров
-        function updateMarkerSizes() {
-            const zoomLevel = map.getZoom();
-            
+        function updateMarkerSizes() {            
             markers.forEach(marker => {
                 const currentClasses = marker.getElement().className;
                 marker.setIcon(L.divIcon({
