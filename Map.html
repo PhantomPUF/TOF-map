@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Интерактивная Карта с Изображением</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+    .leaflet-control-attribution {display:none;}
+    body {margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;}
+    .map_zone{width:900px;height:900px;border:2px solid #ccc;border-radius:10px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.2);}
+    #map{width:100%;height:100%;}
+    #ui{position:absolute;width:100%;}
+    #ui .Menu{position:fixed;z-index:10;top:35%;left:15px;background:rgba(255,255,255,.2);padding:5px;border-radius:5px;}
+    #ui .Menu button{display:block;margin:5px 0;width:120px;height:35px;font-size:14px;background:#fff;border:1px solid #ccc;border-radius:3px;cursor:pointer;}
+    #ui .Menu button:hover{background:#f0f0f0;}
+    #ui .Menu #saveBtn{background:#4caf50;color:#fff;border-color:#4caf50;}
+    #infoWindow{position:fixed;right:10px;top:50px;width:300px;background:rgba(255,255,255,.9);border:1px solid #ccc;padding:10px;overflow-y:auto;z-index:1000;display:none;}
+</style>
+</head>
+<body>
+<div id="infoWindow">
+    <h3>Описание</h3>
+    <div id="infoContent"></div>
+    <button onclick="closeInfo()">Закрыть</button>
+</div>
+
+<div id="ui">
+    <div class="Menu">
+        <button class="mapBtn" data-map="Mirroria">Mirroria</button>
+        <button class="mapBtn" data-map="Domain9">Domain 9</button>
+        <button class="mapBtn" data-map="Metro">Metro</button>
+        <button id="saveBtn">Сохранить</button>
+    </div>
+</div>
+
+<div class="map_zone"><div id="map"></div></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+const map = L.map('map', {
+    center: [0, 0],
+    zoom: 2,
+    minZoom: 2,
+    maxZoom: 5,
+    worldCopyJump: true
+});
+
+let imageOverlay;
+let markers = [];
+let currentMapType = '';
+
+function addMarker(p) {
+    const markerSize = map.getZoom() * 10;
+    const markerHtml = `<div style="
+        width:${markerSize}px;height:${markerSize}px;background:#000;
+        border:2px solid #fff;border-radius:50%;display:flex;
+        align-items:center;justify-content:center;color:#fff;font-weight:bold;
+        font-size:${markerSize/2}px;">
+        ${p.name}
+    </div>`;
+    const icon = L.divIcon({html: markerHtml, className:`marker ${p.reward}`});
+    const m = L.marker([p.y, p.x], {icon}).addTo(map);
+    markers.push(m);
+
+    m.on('dblclick', () => map.removeLayer(m));
+    m.on('click', () => showInfo(p));
+}
+
+function clearMarkers() {
+    markers.forEach(m => map.removeLayer(m));
+    markers = [];
+}
+
+async function loadPoints(jsonFile) {
+    try {
+        const res = await fetch(jsonFile);
+        const data = await res.json();
+        data.forEach(p => addMarker(p));
+    } catch (e) { console.error('Ошибка загрузки данных', e); }
+}
+
+async function setMap(type) {
+    if (imageOverlay) map.removeLayer(imageOverlay);
+
+    let imgUrl, jsonFile;
+    switch (type) {
+        case 'Mirroria': imgUrl = 'mirroria.png'; jsonFile = 'mirroria.json'; break;
+        case 'Domain9':  imgUrl = 'Domain9.png';   jsonFile = 'domain9.json'; break;
+        case 'Metro':    imgUrl = 'metro.png';     jsonFile = 'metro.json'; break;
+        default:         imgUrl = 'Domain9.png';   jsonFile = 'domain9.json'; break;
+    }
+
+    imageOverlay = L.imageOverlay(imgUrl, [[-90,-180],[90,180]]).addTo(map);
+    map.setMaxBounds([[ -90,-180],[90,180 ]]);
+
+    clearMarkers();
+    await loadPoints(jsonFile);
+
+    currentMapType = type;
+}
+
+setMap('Domain9');
+
+function saveToFile(data) {
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'mapPoints.json'; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+document.getElementById('saveBtn').addEventListener('click', () => saveToFile(mapPoints));
+
+const mapPoints = [];
+map.on('dblclick', e => {
+    const rewards = "default";
+    const name = prompt("Введите число или название для точки:");
+    const pointData = {x: e.latlng.lng, y: e.latlng.lat, reward: rewards, name: name || ''};
+    addMarker(pointData);
+    mapPoints.push(pointData);
+});
+
+function showInfo(data) {
+    const infoDiv = document.getElementById('infoWindow');
+    const contentDiv = document.getElementById('infoContent');
+    contentDiv.innerHTML = `<div>${JSON.stringify(data.reward, null, 2)}</div>` +
+        `<img class="info_img" src="${data.img || ''}" />`;
+    infoDiv.style.display = 'block';
+}
+function closeInfo() { document.getElementById('infoWindow').style.display = 'none'; }
+
+document.querySelectorAll('.mapBtn').forEach(btn =>
+    btn.addEventListener('click', () => setMap(btn.dataset.map))
+);
+</script>
+</body>
+</html>

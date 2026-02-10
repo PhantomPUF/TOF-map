@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная Карта с Изображением</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .leaflet-control-attribution {
+            display: none;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Центрация карты по горизонтали */
+            align-items: center; /* Центрация карты по вертикали */
+            height: 100vh; /* Высота всего окна */
+        }
+
+        .map_zone {
+            z-index: 1;
+            width: 900px; /* Ширина зоны карты */
+            height: 900px; /* Высота зоны карты */
+            border: 2px solid #ccc; /* Граница карты */
+            border-radius: 10px; /* Скругленные углы */
+            overflow: hidden; /* Обрезка содержимого, выходящего за границы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для более красивого эффекта */
+        }
+
+        #map {
+            height: 100%; /* Высота карты занимает 100% зоны */
+            width: 100%; /* Ширина карты занимает 100% зоны */
+        }
+
+        .leaflet-image-layer {
+            width: 100%;
+        }
+
+        #ui {
+            position: absolute;
+            width: 100%;
+        }
+
+        #ui .Menu{
+            position: fixed !important;
+            z-index: 10;
+            top: 35%;
+            background: rgba(255, 255, 255, 0.192);
+            padding: 2px;
+            margin-left: 5px;
+        }
+
+        #ui .Menu ul {
+            padding: 0;
+        }
+
+        #ui .Menu li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #ui .Menu input{
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+        #ui .Menu img{
+            width: 50px;
+            height: 50px;
+        }
+        #ui #saveBtn{
+            width: 100%;
+            height: 50px;
+            font-size: 14px;
+
+        }
+        #ui input[type="radio"] {
+            display: none;
+        }
+        #ui .radio-label {
+            display: block;
+            cursor: pointer;
+            margin-right: 3px;
+        }
+        #ui .points {
+            z-index: 10;
+            display: flex;
+            position: fixed;
+            left: 50%;
+            bottom: 1%;
+            transform: translate(-50%, 0%);
+        }
+        #ui .point {
+
+        }
+        #ui .point img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        #ui .radio-label {
+            border: 5px solid transparent;
+        }
+
+        #ui .point input[type="radio"]:checked + .radio-label {
+            border: 5px solid green;
+        }
+        .info_img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="infoWindow" style="
+        position: fixed;
+        right: 10px;
+        top: 50px;
+        width: 300px;
+        height: auto;
+        background: rgba(255,255,255,0.9);
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: none; /* скрыто по умолчанию */
+        overflow-y: auto;
+        z-index: 1000;
+    ">
+        <h3>Описание</h3>
+        <div id="infoContent"></div>
+        <button onclick="closeInfo()">Закрыть</button>
+    </div>
+    <div id="ui">
+        <div class="points">
+        </div>
+        <div class="Menu">
+            <button id="saveBtn">Сохранить</button>
+        </div>
+    </div>
+
+    <div class="map_zone">
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Инициализация карты
+        const map = L.map('map', {
+            center: [0, 0],
+            zoom: 2,
+            minZoom: 2,
+            maxZoom: 5,
+            worldCopyJump: true
+        });
+
+        const zoomLevel = map.getZoom();
+        const markerSize = zoomLevel * 10;
+
+        const imageUrl = 'Domain9.png';
+
+        const imageBounds = [[-90, -180], [90, 180]];
+
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+        var mapPoints = [];
+
+        
+        mapPoints = [];
+
+        map.setMaxBounds(imageBounds);
+
+        const markers = [];
+
+        function addMarker (p) {
+            const markerHtml = `
+                <div style="
+                    width: ${markerSize}px;
+                    height: ${markerSize}px;
+                    background-color: black;
+                    border: 2px solid white;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: bold;
+                    font-family: Arial, sans-serif;
+                    font-size: ${markerSize / 2}px;
+                ">
+                    ${p.name}
+                </div>
+            `;
+
+            const marker = L.divIcon({
+                html: markerHtml,
+                className: `marker ${p.reward}`,
+                //iconSize: [markerSize, markerSize],
+                //iconAnchor: [markerSize / 2, markerSize / 2],
+            });
+
+
+            const newMarker = L.marker([p.y, p.x], { icon: marker }).addTo(map);
+
+            markers.push(newMarker);
+
+            newMarker.on('dblclick', function() {
+                map.removeLayer(newMarker);
+            });
+
+            newMarker.on('click', () => {
+                showInfo(p);
+            });
+        }
+
+        map.on('dblclick', function(e) {
+            const rewards = "default";
+            const name = prompt("Введите число или название для точки:");
+
+            // Создаем объект точки
+            const pointData = {
+                x: e.latlng.lng,
+                y: e.latlng.lat,
+                reward: rewards,
+                name: name || ''
+            };
+
+            // Добавляем маркер
+            addMarker(pointData);
+
+            // Добавляем в массив точек
+            mapPoints.push(pointData);
+        });
+
+        map.fitBounds(imageBounds);
+        
+         // Функция для сохранения данных в JSON-файл
+        function saveToFile(data) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mapPoints.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Обработчик для кнопки сохранения
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            saveToFile(mapPoints);
+        });
+
+
+        async function loadData() {
+            try {
+                const response = await fetch('data D9.json'); // Путь к JSON файлу
+                const data = await response.json();
+
+                data.forEach(p => {
+                    addMarker(p);
+                })
+
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+            }
+        }
+        
+        loadData();
+
+        function showInfo(data) {
+            const infoDiv = document.getElementById('infoWindow');
+            const contentDiv = document.getElementById('infoContent');
+
+            contentDiv.innerHTML = `<div>${JSON.stringify(data.reward, null, 2)}</div><img class="info_img" src='${data.img}'/>`;
+
+            infoDiv.style.display = 'block';
+        }
+
+        function closeInfo() {
+            document.getElementById('infoWindow').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
