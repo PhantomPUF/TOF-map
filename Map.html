@@ -30,6 +30,7 @@
         <button class="mapBtn" data-map="Mirroria">Mirroria</button>
         <button class="mapBtn" data-map="Domain9">Domain 9</button>
         <button class="mapBtn" data-map="Metro">Metro</button>
+        <button class="mapBtn" data-map="Bazaar">Bazaar</button>
         <button id="saveBtn">Сохранить</button>
     </div>
 </div>
@@ -86,8 +87,9 @@ async function setMap(type) {
     let imgUrl, jsonFile;
     switch (type) {
         case 'Mirroria': imgUrl = 'Mirroria.png'; jsonFile = 'mirroria.json'; break;
-        case 'Domain9':  imgUrl = 'Domain9.png';   jsonFile = 'domain9.json'; break;
+        case 'Domain9':  imgUrl = 'Domain91.png';   jsonFile = 'domain9.json'; break;
         case 'Metro':    imgUrl = 'Metro.png';     jsonFile = 'metro.json'; break;
+        case 'Bazaar':    imgUrl = 'Bazaar.png';     jsonFile = 'Bazaar.json'; break;
         default:         imgUrl = 'Domain9.png';   jsonFile = 'domain9.json'; break;
     }
 
