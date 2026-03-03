@@ -6,7 +6,7 @@
     "number":  "33",
     "description": "👹",
     "img": "Terron/33.png",
-    "reward": "2x Limpid Cicada Wings <img src='Jiuyu_Market_016.png'/>"
+    "reward": "2x Limpid Cicada Wings <img src='Icon/market/Jiuyu_Market_016.png'/>"
   },
   {
     "x": -13.447265625000002,
@@ -24,7 +24,7 @@
     "npcName": "Yulan",
     "description": "📷",
     "img": "Terron/35.png",
-    "reward": "2x Herbal Longevity Tonic <img src='Jiuyu_Market_010.png'/>"    
+    "reward": "2x Herbal Longevity Tonic <img src='Icon/market/Jiuyu_Market_010.png'/>"    
   },
   {
     "x": -63.28125000000001,
@@ -33,7 +33,7 @@
     "npcName": "Yu Hang NPC",
     "description": "📷<img src='Terron/36.png'/>",
     "img": "Terron/36.png",
-    "reward": "2x Shengwen Carved Dracojade Box <img src='Jiuyu_Market_029.png'/>"
+    "reward": "2x Shengwen Carved Dracojade Box <img src='Icon/market/Jiuyu_Market_029.png'/>"
   },
   {
     "x": -69.74121093750001,
@@ -51,6 +51,6 @@
     "npcName": "Zi Yan NPC",
     "description": "✉️ <img src='Terron/38.png'/>",
     "img": "Terron/38.png",
-    "reward": "2x Blackflame Censer <img src='Jiuyu_Market_023.png'/>"
+    "reward": "2x Blackflame Censer <img src='Icon/market/Jiuyu_Market_023.png'/>"
   }
 ]

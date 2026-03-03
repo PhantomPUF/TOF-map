@@ -6,7 +6,7 @@
     "npcName": "Gnonno",
     "description": "📷",
     "img": "Terron/1.png",
-    "reward": "2x Wang's Dragon Amrita <img src='Jiuyu_Market_009.png'/>"    
+    "reward": "2x Wang's Dragon Amrita <img src='Icon/market/Jiuyu_Market_009.png'/>"    
   },
   {
     "x": 69.56542968750001,
@@ -15,7 +15,7 @@
     "npcName": "Lin",
     "description": "3x Emerald Fan <img src='Icon/market/Jiuyu_Market_030.png'/>",
     "img": "Terron/2.png",
-    "reward": "300 Terron <img src='jiuyu_coin.png'/>"    
+    "reward": "300 Terron <img src='Icon/huobi/jiuyu_coin.png'/>"
   },
   {
     "x": 61.91894531250001,
@@ -24,7 +24,7 @@
     "npcName": "Lyra",
     "description": "5x Fruity Rice Punch <img src='Icon/market/Jiuyu_Market_007.png'/>",
     "img": "Terron/3.png",
-    "reward": "300 Terron <img src='jiuyu_coin.png'/>"
+    "reward": "300 Terron <img src='Icon/huobi/jiuyu_coin.png'/>"
   },
   {
     "x": 32.16796875000001,
@@ -33,7 +33,7 @@
     "npcName": "Shelly",
     "description": "3x forging hammer <img src='Icon/market/Jiuyu_Market_028.png'/>",
     "img": "Terron/4.png",
-    "reward": "300 Terron <img src='jiuyu_coin.png'/>"
+    "reward": "300 Terron <img src='Icon/huobi/jiuyu_coin.png'/>"
   },
   {
     "x": -4.086914062500001,
@@ -42,7 +42,7 @@
     "npcName": "Annabella",
     "description": "📷",
     "img": "Terron/5.png",
-    "reward": "2x Moon Glow Satin <img src='Jiuyu_Market_015.png'/>"
+    "reward": "2x Moon Glow Satin <img src='Icon/market/Jiuyu_Market_015.png'/>"
   },
   {
     "x": 18.588867187500004,
@@ -51,7 +51,7 @@
     "npcName": "Shelly",
     "description": "5x Roughstone <img src='Icon/shicai/Jiuyu_Harvest_019.png'/>",
     "img": "Terron/6.png",
-    "reward": "300 Terron <img src='jiuyu_coin.png'/>"
+    "reward": "300 Terron <img src='Icon/huobi/jiuyu_coin.png'/>"
   },
   {
     "x": -27.24609375,
@@ -60,6 +60,6 @@
     "npcName": "Ruby",
     "description": "📷",
     "img": "Terron/7.png",
-    "reward": "2х Bamboo Leaf Brew <img src='Jiuyu_Market_002.png'/>"
+    "reward": "2х Bamboo Leaf Brew <img src='Icon/market/Jiuyu_Market_002.png'/>"
   }
 ]
