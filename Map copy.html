@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Интерактивная Карта с Изображением</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+    .leaflet-control-attribution {display:none;}
+    body {margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;}
+    .map_zone{width:900px;height:900px;border:2px solid #ccc;border-radius:10px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.2);}
+    #map{width:100%;height:100%;}
+    #ui{position:absolute;width:100%;}
+    #ui .Menu{position:fixed;z-index:10;top:35%;left:15px;background:rgba(255,255,255,.2);padding:5px;border-radius:5px;}
+    #ui .Menu button{display:block;margin:5px 0;width:120px;height:35px;font-size:14px;background:#fff;border:1px solid #ccc;border-radius:3px;cursor:pointer;}
+    #ui .Menu button:hover{background:#f0f0f0;}
+    #ui .Menu #saveBtn{background:#4caf50;color:#fff;border-color:#4caf50;}
+    #infoWindow{position:fixed;right:10px;top:50px;width:300px;background:rgba(255,255,255,.9);border:1px solid #ccc;padding:10px;overflow-y:auto;z-index:1000;display:none;}
+    .info_img{width: 100%;}
+
+    #imageModal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    #modalImage {
+        max-width: 90%;
+        max-height: 90%;
+    }
+    #description, #reward {
+        display: flex;
+        align-items: center;
+    }
+    #description p, #reward p {
+        margin: 0;
+    }
+    h2,h3 {
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+<div id="infoWindow">
+    <h3>Описание</h3>
+    <div id="infoContent">
+        <h3 id="npcName"></h3>
+        <div id="description"></div>
+        <div id="npcImage"></div>
+        <div id="reward"></div>
+    </div>
+    <button onclick="closeInfo()">Закрыть</button>
+</div>
+
+<div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+    <img id="modalImage" style="max-width:90%; max-height:90%;" src="" />
+</div>
+
+<div id="ui">
+    <div class="Menu">
+        <div>
+            <input type="radio" class="server" name="server" value="EU" checked>EU
+            <input type="radio" class="server" name="server" value="MMO">MMO
+        </div>
+        <button class="mapBtn" data-map="Mirroria">Mirroria</button>
+        <button class="mapBtn" data-map="Domain9">Domain 9</button>
+        <button class="mapBtn" data-map="Metro">Metro</button>
+        <button class="mapBtn" data-map="Bazaar">Bazaar</button>
+        <button id="saveBtn">Сохранить</button>
+    </div>
+</div>
+
+<div class="map_zone"><div id="map"></div></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+const map = L.map('map', {
+    center: [0, 0],
+    zoom: 2,
+    minZoom: 2,
+    maxZoom: 5,
+    worldCopyJump: true
+});
+
+let imageOverlay;
+let markers = [];
+let currentMapType = '';
+
+function addMarker(p) {
+    const markerSize = map.getZoom() * 10;
+    const markerHtml = `<div style="
+        width:${markerSize}px;height:${markerSize}px;background:#000;
+        border:2px solid #fff;border-radius:50%;display:flex;
+        align-items:center;justify-content:center;color:#fff;font-weight:bold;
+        font-size:${markerSize/2}px;">
+        ${p.name}
+    </div>`;
+    const icon = L.divIcon({html: markerHtml, className:`marker ${p.reward}`});
+    const m = L.marker([p.y, p.x], {icon}).addTo(map);
+    markers.push(m);
+
+    m.on('dblclick', () => map.removeLayer(m));
+    m.on('click', () => showInfo(p));
+}
+
+function clearMarkers() {
+    markers.forEach(m => map.removeLayer(m));
+    markers = [];
+}
+
+async function loadPoints(jsonFile, weeklyPromise) {
+    try {
+        const weekly = await weeklyPromise;
+        const res = await fetch(jsonFile);
+        const data = await res.json();
+        const filteredData = data.filter(p => weekly.includes(p.name));
+        filteredData.forEach(p => addMarker(p));
+    } catch (e) { console.error('Ошибка загрузки данных', e); }
+}
+
+async function loadPoints2(jsonFile) {
+    try {
+        const res = await fetch(jsonFile);
+        const data = await res.json();
+        data.forEach(p => addMarker(p));
+    } catch (e) { console.error('Ошибка загрузки данных', e); }
+}
+
+async function setMap(type) {
+    if (imageOverlay) map.removeLayer(imageOverlay);
+
+    let imgUrl, jsonFile;
+    switch (type) {
+        case 'Mirroria': imgUrl = 'Mirroria.png'; jsonFile = 'mirroria.json'; weeklyjson = 'WeeklyTerron.txt'; break;
+        case 'Domain9':  imgUrl = 'Domain91.png';   jsonFile = 'domain9.json'; weeklyjson = 'WeeklyTerron.txt'; break;
+        case 'Metro':    imgUrl = 'Metro.png';     jsonFile = 'metro.json'; weeklyjson = 'WeeklyNorn.txt'; break;
+        case 'Bazaar':    imgUrl = 'Bazaar.png';     jsonFile = 'Bazaar.json'; weeklyjson = 'WeeklyTerron.txt'; break;
+        default:         imgUrl = 'Domain9.png';   jsonFile = 'domain9.json'; weeklyjson = 'WeeklyTerron.txt'; break;
+    }
+
+    imageOverlay = L.imageOverlay(imgUrl, [[-90,-180],[90,180]]).addTo(map);
+    map.setMaxBounds([[ -90,-180],[90,180 ]]);
+
+    clearMarkers();
+    let weekly = getWeekly(weeklyjson)
+    //await loadPoints(jsonFile, weekly);
+    await loadPoints2(jsonFile)
+
+    currentMapType = type;
+}
+
+setMap('Metro');
+
+async function getWeekly(file) {
+    try {
+        const res = await fetch(file);
+        if (!res.ok) {
+            throw new Error(`Ошибка загрузки файла: ${res.statusText}`);
+        }
+        const text = await res.text();
+        const lines = text.trim().split('\n');
+        const data = lines.map(line => {
+            const value = line.split(' ')[1];
+            if (!isNaN(value) && value.trim() !== '') {
+                return value;
+            }
+        }).filter(item => item !== undefined);
+        return data;
+    } catch (e) {
+        console.error('Ошибка при получении данных:', e);
+    }
+}
+
+function saveToFile(data) {
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'mapPoints.json'; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+document.getElementById('saveBtn').addEventListener('click', () => saveToFile(mapPoints));
+
+const mapPoints = [];
+map.on('dblclick', e => {
+    const rewards = "default";
+    const name = prompt("Введите число или название для точки:");
+    const pointData = {x: e.latlng.lng, y: e.latlng.lat, reward: rewards, name: name || ''};
+    addMarker(pointData);
+    mapPoints.push(pointData);
+});
+
+function showInfo(data) {
+    const infoDiv = document.getElementById('infoWindow');
+    const contentDiv = document.getElementById('infoContent');
+    const imgSrc = data.img || '';
+    const imgHtml = `<img class="info_img" src="${imgSrc}" style="cursor:pointer;" onclick="openImageInCenter('${imgSrc}')" />`;
+
+    document.getElementById("npcName").innerHTML = data.npcName;
+
+    renderContent(data.description, document.getElementById('description'));
+    renderContent(data.reward, document.getElementById('reward'));
+
+    document.getElementById('npcImage').innerHTML = `<img width="100%" src="${data.img}"/>`;
+    infoDiv.style.display = 'block';
+}
+
+function renderContent(data, container) {
+  container.innerHTML = '';
+
+  parseMixedContent(data).forEach(item => {
+    if (item.type === 'text') {
+      const p = document.createElement('p');
+      p.textContent = item.content;
+      container.appendChild(p);
+    } else if (item.type === 'image') {
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.style.maxWidth = '50px';
+      container.appendChild(img);
+    }
+  });
+}
+
+function parseMixedContent(str) {
+  const pattern = /(<img[^>]*src=['"][^'"]+['"][^>]*>)|([^<]+)/gi;
+  const result = [];
+  let match;
+
+  while ((match = pattern.exec(str)) !== null) {
+    if (match[1]) {
+      // Изображение
+      const srcMatch = /src=['"]([^'"]+)['"]/.exec(match[1]);
+      if (srcMatch) {
+        result.push({ type: 'image', src: srcMatch[1] });
+      }
+    } else if (match[2]) {
+      // Текст
+      const text = match[2].trim();
+      if (text) {
+        result.push({ type: 'text', content: text });
+      }
+    }
+  }
+  return result;
+}
+
+function openImageInCenter(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modalImg.src = src;
+    modal.style.display = 'flex';
+}
+
+document.getElementById('imageModal').addEventListener('click', () => {
+    document.getElementById('imageModal').style.display = 'none';
+});
+
+function closeInfo() { document.getElementById('infoWindow').style.display = 'none'; }
+
+document.querySelectorAll('.mapBtn').forEach(btn =>
+    btn.addEventListener('click', () => setMap(btn.dataset.map))
+);
+
+</script>
+</body>
+</html>

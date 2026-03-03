@@ -1,15 +1,65 @@
 [
   {
-    "x": -8.437500000000002,
-    "y": -27.994401411046148,
-    "reward": "Ji Yu",
-    "img": "image123.png",
-    "name": "123"
+    "x": 109.42382812500001,
+    "y": 3.469557303061473,
+    "number":  "1",
+    "npcName": "Gnonno",
+    "description": "📷",
+    "img": "Terron/1.png",
+    "reward": "2x Wang's Dragon Amrita <img src='Jiuyu_Market_009.png'/>"    
   },
   {
-    "x": 52.32191088594773,
-    "y": -42.45117187500001,
-    "reward": "Break_Mine_Kailo2",
-    "name": 1
+    "x": 69.56542968750001,
+    "y": -14.519780046326085,
+    "number":  "2",
+    "npcName": "Lin",
+    "description": "3x Emerald Fan <img src='Icon/market/Jiuyu_Market_030.png'/>",
+    "img": "Terron/2.png",
+    "reward": "300 Terron <img src='jiuyu_coin.png'/>"    
+  },
+  {
+    "x": 61.91894531250001,
+    "y": -13.62463343823614,
+    "number":  "3",
+    "npcName": "Lyra",
+    "description": "5x Fruity Rice Punch <img src='Icon/market/Jiuyu_Market_007.png'/>",
+    "img": "Terron/3.png",
+    "reward": "300 Terron <img src='jiuyu_coin.png'/>"
+  },
+  {
+    "x": 32.16796875000001,
+    "y": -46.619261036171515,
+    "number":  "4",
+    "npcName": "Shelly",
+    "description": "3x forging hammer <img src='Icon/market/Jiuyu_Market_028.png'/>",
+    "img": "Terron/4.png",
+    "reward": "300 Terron <img src='jiuyu_coin.png'/>"
+  },
+  {
+    "x": -4.086914062500001,
+    "y": -53.46189043285913,
+    "number":  "5",
+    "npcName": "Annabella",
+    "description": "📷",
+    "img": "Terron/5.png",
+    "reward": "2x Moon Glow Satin <img src='Jiuyu_Market_015.png'/>"
+  },
+  {
+    "x": 18.588867187500004,
+    "y": 27.52775820686191,
+    "number":  "6",
+    "npcName": "Shelly",
+    "description": "5x Roughstone <img src='Icon/shicai/Jiuyu_Harvest_019.png'/>",
+    "img": "Terron/6.png",
+    "reward": "300 Terron <img src='jiuyu_coin.png'/>"
+  },
+  {
+    "x": -27.24609375,
+    "y": 51.04139389812637,
+    "number":  "7",
+    "npcName": "Ruby",
+    "description": "📷",
+    "img": "Terron/7.png",
+    "reward": "2х Bamboo Leaf Brew <img src='Jiuyu_Market_002.png'/>"
   }
 ]

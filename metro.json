@@ -1,15 +1,335 @@
 [
   {
-    "x": -8.437500000000002,
-    "y": -27.994401411046148,
-    "reward": "Ji Yu",
-    "img": "image123.png",
-    "name": "123"
+    "x": 114.56542968750001,
+    "y": 53.51418452077113,
+    "number":  "1",
+    "npcName": "Meryl",
+    "description": "Submit White Rose Insignia <img src='Icon/Norn/Icon_norn_ranquest_01.png'/>",
+    "img": "Norn/1.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
   {
-    "x": 52.32191088594773,
-    "y": -42.45117187500001,
-    "reward": "Break_Mine_Kailo2",
-    "name": 1
+    "x": 106.04003906250001,
+    "y": 63.01510569831989,
+    "number":  "2",
+    "npcName": "Goering",
+    "description": "Submit Bag of Coffee Beans <img src='Icon/Norn/Icon_norn_ranquest_12.png'/>",
+    "img": "Norn/2.png",
+    "reward": "20 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"    
+  },
+  {
+    "x": 128.40820312500003,
+    "y": 64.62387720204691,
+    "number":  "3",
+    "npcName": "Asurada",
+    "description": "Eliminate Patrol Droid X3",
+    "img": "Norn/3.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"    
+  },
+  {
+    "x": 132.49511718750003,
+    "y": 65.85675647909318,
+    "number":  "4",
+    "npcName": "Meryl",
+    "description": "Take a photo",
+    "img": "Norn/4.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": 123.22265625000001,
+    "y": 68.31814602144938,
+    "number":  "5",
+    "npcName": "Lily",
+    "description": "Take a photo",
+    "img": "Norn/5.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },  
+  {
+    "x": 117.5537109375,
+    "y": 68.39918004344189,
+    "number":  "6",
+    "npcName": "Smilie",
+    "description": "Take a photo",
+    "img": "Norn/6.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": 129.06738281250003,
+    "y": 71.9653876991313,
+    "number":  "7",
+    "npcName": "Anka",
+    "description": "Submit Colossal Matcha Parfait <img src='Icon/Norn/Icon_norn_ranquest_05.png'/>",
+    "img": "Norn/7.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": 29.399414062500004,
+    "y": 71.04552881933586,
+    "number":  "8",
+    "npcName": "Nola",
+    "description": "Repair Surveillance turret",
+    "img": "Norn/8.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -17.182617187500004,
+    "y": 75.99483913802067,
+    "number":  "9",
+    "npcName": "L-08",
+    "description": "Eliminate Aberrants X3",
+    "img": "Norn/9.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },  
+  {
+    "x": -15.19689734359784,
+    "y": 76.32942711267002,
+    "number":  "10",
+    "npcName": "QIjie",
+    "description": "Take a photo",
+    "img": "Norn/10.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -24.4775390625,
+    "y": 76.3518964311259,
+    "number":  "11",
+    "npcName": "Gunpowder",
+    "description": "Eliminate Aberrants X3",
+    "img": "Norn/11.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -22.1923828125,
+    "y": 77.09842252555306,
+    "number":  "12",
+    "npcName": "Esther",
+    "description": "Submit Transit E-Card",
+    "img": "Norn/12.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -21.093750000000004,
+    "y": 74.93656682526165,
+    "number":  "13",
+    "npcName": "Mojie",
+    "description": "Eliminate Armored Defense Force",
+    "img": "Norn/13.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -52.03125,
+    "y": 54.49556752187409,
+    "number":  "14 15",
+    "npcName": "Cooke or Egan",
+    "description": "Delivery Document to David or Find the lost sushi",
+    "img": "Norn/14.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -94.91711094996458,
+    "y": 66.51176860251665,
+    "number":  "16",
+    "npcName": "Angela",
+    "description": "Store package",
+    "img": "Norn/16.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -93.076171875,
+    "y": 65.65827451982663,
+    "number":  "17",
+    "npcName": "Nola",
+    "description": "Submit R8 Power Engine <img src='Icon/Norn/Icon_norn_ranquest_04.png'/>",
+    "img": "Norn/17.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -93.95507812500001,
+    "y": 64.54844014422517,
+    "number":  "18",
+    "npcName": "Eugene",
+    "description": "Copy a file",
+    "img": "Norn/18.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },  
+  {
+    "x": -96.15234375,
+    "y": 63.37183226679281,
+    "number":  "19",
+    "npcName": "Anka",
+    "description": "Take a photo",
+    "img": "Norn/19.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -6.1962890625,
+    "y": 11.350796722383672,
+    "number":  "20",
+    "npcName": "Lorraine",
+    "description": "Repair Surveillance turret",
+    "img": "Norn/20.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -82.38711716017212,
+    "y": 27.544643097788118,
+    "number":  "21",
+    "npcName": "Jasmyn",
+    "description": "Eliminate Aberrants X3",
+    "img": "Norn/21.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -78.13476562500001,
+    "y": 16.678293098288513,
+    "number":  "22",
+    "npcName": "Liwen",
+    "description": "Eliminate Aberrants X3",
+    "img": "Norn/22.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -79.38299936394552,
+    "y": -72.12870722271592,
+    "number":  "23",
+    "npcName": "Pri",
+    "description": "Eliminate Vending Machine",
+    "img": "Norn/23.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -80.2880859375,
+    "y": -72.91963546581482,
+    "number":  "24",
+    "npcName": "Asurada",
+    "description": "Take a photo",
+    "img": "Norn/24.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -78.75000000000001,
+    "y": -70.62719676071552,
+    "number":  "25",
+    "npcName": "Gray Fox",
+    "description": "Submit Platinum Witch's Key <img src='Icon/Norn/Icon_norn_ranquest_03.png'/>",
+    "img": "Norn/25.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -109.29199218750001,
+    "y": -73.20131708476698,
+    "number":  "26",
+    "npcName": "Roslyn",
+    "description": "Take a photo",
+    "img": "Norn/26.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -108.01757812500001,
+    "y": -72.89380193362285,
+    "number":  "27",
+    "npcName": "Gunpowder",
+    "description": "Submit liquid bomb <img src='Icon/Norn/Icon_norn_ranquest_07.png'/>",
+    "img": "Norn/27.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -111.84082031250001,
+    "y": -73.65254484149817,
+    "number":  "28",
+    "npcName": "Carol",
+    "description": "Submit Handcuff Sensory Key <img src='Icon/Norn/Icon_norn_ranquest_06.png'/>",
+    "img": "Norn/28.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -111.6356651834545,
+    "y": -74.35352790136585,
+    "number":  "29",
+	  "npcName": "Carol",
+    "description": "Eliminate Vending Machine",
+    "img": "Norn/29.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+	{
+    "x": -108.58886718750001,
+    "y": -74.98218270428184,
+    "number":  "30",
+    "npcName": "Luna",
+    "description": "Eliminate Vending Machine",
+    "img": "Norn/30.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },  
+  {
+    "x": -106.21582031250001,
+    "y": -74.56673621013675,
+    "number":  "31",
+    "npcName": "Dr. Pepper",
+    "description": "Eliminate WL6",
+    "img": "Norn/31.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },  
+  {
+    "x": -105.55664062500001,
+    "y": -75.54111255781132,
+    "number":  "32",
+    "npcName": "Baggis",
+    "description": "Eliminate Aerial Defense Force",
+    "img": "Norn/32.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -105.11718750000001,
+    "y": -76.5883559487801,
+    "number":  "33",
+    "npcName": "Od777",
+    "description": "Take a photo",
+    "img": "Norn/33.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -102.8455078125,
+    "y": -78.15241384715756,
+    "number":  "34",
+    "npcName": "Baggis",
+    "description": "Submit Vintage Booze <img src=''/>",
+    "img": "Norn/34.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -99.53613281250001,
+    "y": -78.33164847573174,
+    "number":  "35 36",
+    "npcName": "Roslyn",
+    "description": "Submit DlicatcyX3 <img src='Icon/Norn/Icon_norn_ranquest_02.png'/> or Take a photo",
+    "img": "Norn/35.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -100.37109375,
+    "y": -78.73350050778467,
+    "number":  "37",
+    "npcName": "Kelli",
+    "description": "Submit Dessert Coupon <img src='Icon/Norn/Icon_norn_ranquest_10.png'/>",
+    "img": "Norn/37.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -101.29394531250001,
+    "y": -78.91238368710717,
+    "number":  "38",
+    "npcName": "Ling Ling",
+    "description": "Submit Perception Eyewear <img src='Icon/Norn/Icon_norn_ranquest_09.png'/>",
+    "img": "Norn/38.png",
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -100.23925781250001,
+    "y": -77.50411917973989,
+    "number":  "39",
+    "npcName": "Molly",
+    "description": "Submit Locket Necklace <img src='Icon/Norn/Icon_norn_ranquest_11.png'/>",
+    "img": "Norn/39.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   }
 ]
