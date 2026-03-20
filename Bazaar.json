@@ -4,9 +4,9 @@
     "y": -37.91055825094608,
     "npcName": "Domain Guard NPC",
     "number":  "33",
-    "description": "👹",
+    "description": "<table border='1'><thead><tr><th>Quest</th><th>Reward</th></tr></thead><tbody><tr><td><div class='item'><p>Ironclad</p></div></td><td><div class='item'><p>х2 Limpid Cicada Wings</p><img src='Icon/market/Jiuyu_Market_016.png' style='max-width:50px'/></div></td></tr><tr><td><div class='item'><p>Untamed</p></div></td><td><div class='item'><p>2x Moon Glow Satin</p><img src='Icon/market/Jiuyu_Market_015.png' style='max-width:50px'/></div></td></tr><tr><td><div class='item'><p>Zhe Er</p></div></td><td><div class='item'><p>2x Wang's Dragon Amrita</p><img src='Icon/market/Jiuyu_Market_009.png' style='max-width:50px'/></div></td></tr></tbody></table>",
     "img": "Terron/33.png",
-    "reward": "2x Limpid Cicada Wings <img src='Icon/market/Jiuyu_Market_016.png'/>"
+    "reward": ""
   },
   {
     "x": -13.447265625000002,
@@ -49,7 +49,7 @@
     "y": 30.74681317351517,
     "number":  "38",
     "npcName": "Zi Yan NPC",
-    "description": "✉️ <img src='Terron/38.png'/>",
+    "description": "✉️",
     "img": "Terron/38.png",
     "reward": "2x Blackflame Censer <img src='Icon/market/Jiuyu_Market_023.png'/>"
   }

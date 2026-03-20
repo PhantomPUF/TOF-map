@@ -103,7 +103,7 @@
     "y": 77.09842252555306,
     "number":  "12",
     "npcName": "Esther",
-    "description": "Submit Transit E-Card",
+    "description": "Submit Transit E-Card <img src='Icon/Norn/Icon_norn_ranquest_13.png'/>",
     "img": "Norn/12.png",
     "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -292,7 +292,7 @@
     "y": -78.15241384715756,
     "number":  "34",
     "npcName": "Baggis",
-    "description": "Submit Vintage Booze <img src=''/>",
+    "description": "Submit Vintage Booze <img src='Icon/Norn/Icon_norn_ranquest_08'/>",
     "img": "Norn/34.png",
     "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -302,8 +302,9 @@
     "number":  "35 36",
     "npcName": "Roslyn",
     "description": "Submit DlicatcyX3 <img src='Icon/Norn/Icon_norn_ranquest_02.png'/> or Take a photo",
-    "img": "Norn/35.png",
-    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+    "description": "<table border='1'><thead><tr><th>Quest</th><th>Reward</th></tr></thead><tbody><tr><td><div class='item'><p>Submit DlicatcyX3</p><img src='Icon/Norn/Icon_norn_ranquest_02.png' style='max-width:50px'/></div></td><td><div class='item'><p>60 Norn</p><img src='Icon/Norn/Norn_nuoyuan.png'/></div></td></tr><tr><td><div class='item'><p>📷</p></div></td><td><div class='item'><p>40 Norn</p><img src='Icon/Norn/Norn_nuoyuan.png'/></div></td></tr></tbody></table>",
+    "img": "Norn/36.png",
+    "reward": ""
   },
   {
     "x": -100.37109375,

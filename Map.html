@@ -30,25 +30,111 @@
         max-width: 90%;
         max-height: 90%;
     }
-    #description, #reward {
+    /* #description, #reward {
         display: flex;
         align-items: center;
-    }
-    #description p, #reward p {
+    } */
+    .questItem p, .reward p {
         margin: 0;
     }
     h2,h3 {
         margin: 0;
     }
+    .quest {
+        display: flex;
+        align-items: center;
+    }
+    .item img, .reward img, #description img{
+        width: 50px;
+    }
+    #description1 {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .questItem, .reward {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #reward {
+        display: flex;
+        align-items: center;
+    }
 </style>
 </head>
 <body>
+<div style="display: none;">
+<table border='1'><thead><tr><th>Quest</th><th>Reward</th></tr></thead><tbody><tr><td>
+    <div class='item'><p>Ironclad</p></div></td>
+    <td><div class='item'><p>х2 Limpid Cicada Wings</p><img src='Icon/market/Jiuyu_Market_016.png' style='max-width:50px'/></div></td>
+</tr><tr><td><div class='item'><p>Untamed</p></div></td>
+    <td><div class='item'><p>2x Moon Glow Satin</p>
+        <img src='Icon/market/Jiuyu_Market_015.png' style='max-width:50px'/></div></td></tr>
+    <tr><td><div class='item'><p>Zhe Er</p></div></td>
+    <td><div class='item'><p>2x Wang's Dragon Amrita</p>
+        <img src='Icon/market/Jiuyu_Market_009.png' style='max-width:50px'/></div></td></tr>
+    </tbody></table>
+
+    
+
+
+
+// 5:20 33 Domain Guard NPC 👹
+// (Ironclad – Limpid Cicada Wings ×2)
+// (Untamed – Moon Glow Satin ×2)
+// (Zhe Er – Wang's Dragon Amrita ×2)
+  </div>
 <div id="infoWindow">
     <h3>Описание</h3>
     <div id="infoContent">
         <h3 id="npcName"></h3>
-        <div id="description"></div>
         <div id="npcImage"></div>
+        <div id="description"></div>   
+        <div id="description2" style="display: none;">
+            <div class="quest">
+                <div class="questItem">
+                    <p>5x Tusu Wine</p>
+                    <img src="Icon/market/Jiuyu_Market_006.png"/>
+                </div>
+                <div class="reward">
+                    <p>300 Terron</p>
+                    <img src="Icon/huobi/jiuyu_coin.png" />
+                </div>
+            </div>
+            <div class="quest">
+                <div class="questItem">
+                    <p>📷</p>
+                </div>
+                <div class="reward">
+                    <p>2x Enlightenment Tablet</p>
+                    <img src="Icon/market/Jiuyu_Market_008.png" />
+                </div>
+            </div>
+        </div>     
+        <table border="1" style="display: none;">
+            <thead>
+                <tr>
+                <th>Quest</th>
+                <th>Reward</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td><div class="item"><p>5x Tusu Wine</p><img src="Icon/market/Jiuyu_Market_006.png" style="max-width:50px"/></div></td>
+                <td><div class="item"><p>300 Terron</p><img src="Icon/huobi/jiuyu_coin.png" style="max-width:50px"/></div></td>
+                </tr>
+                <tr>
+                <td><div class="item"><p>📷</p></div></td>
+                <td><div class="item"><p>2x Enlightenment Tablet</p><img src="Icon/market/Jiuyu_Market_008.png" style="max-width:50px"/></div></td>
+                </tr>
+            </tbody>
+        </table>
         <div id="reward"></div>
     </div>
     <button onclick="closeInfo()">Закрыть</button>
@@ -157,7 +243,7 @@ const radios = document.querySelectorAll('input[type="radio"].server');
 
 radios.forEach(radio => {
     radio.addEventListener('change', () => {
-        setMap(document.querySelector('input[name="lang"]:checked').value);
+        setMap(document.querySelector('input[name="server"]:checked').value);
     });
 });
 
@@ -198,13 +284,17 @@ function showInfo(data) {
     const imgSrc = data.img || '';
     const imgHtml = `<img class="info_img" src="${imgSrc}" style="cursor:pointer;" onclick="openImageInCenter('${imgSrc}')" />`;
 
-    document.getElementById("npcName").innerHTML = imgHtml;
+    document.getElementById("npcName").innerHTML = data.npcName;
+    document.getElementById("npcImage").innerHTML = imgHtml;
 
-    renderContent(data.description, document.getElementById('description'));
+    document.getElementById('description').innerHTML = data.description
+
+    //renderContent(data.description, document.getElementById('description'));
     renderContent(data.reward, document.getElementById('reward'));
 
     infoDiv.style.display = 'block';
 }
+
 
 function renderContent(data, container) {
   container.innerHTML = '';
@@ -219,12 +309,14 @@ function renderContent(data, container) {
       img.src = item.src;
       img.style.maxWidth = '50px';
       container.appendChild(img);
+    } else if (item.type === 'div') {
+      container.innerHTML = container.innerHTML + item.content;
     }
   });
 }
 
 function parseMixedContent(str) {
-  const pattern = /(<img[^>]*src=['"][^'"]+['"][^>]*>)|([^<]+)/gi;
+  const pattern = /(<img[^>]*src=['"][^'"]+['"][^>]*>)|(<div[^>]*>[\s\S]*?<\/div>)|([^<]+)/gi;
   const result = [];
   let match;
 
@@ -236,8 +328,11 @@ function parseMixedContent(str) {
         result.push({ type: 'image', src: srcMatch[1] });
       }
     } else if (match[2]) {
+      // Div
+      result.push({ type: 'div', content: match[2] });
+    } else if (match[3]) {
       // Текст
-      const text = match[2].trim();
+      const text = match[3].trim();
       if (text) {
         result.push({ type: 'text', content: text });
       }
