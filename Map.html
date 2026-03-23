@@ -146,7 +146,6 @@ async function loadPoints(jsonFile, weeklyPromise) {
                 filteredData.push(p);
 
         })
-        console.log(data);
         filteredData.forEach(p => addMarker(p));
     } catch (e) { console.error('Ошибка загрузки данных', e); }
 }
