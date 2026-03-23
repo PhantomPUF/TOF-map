@@ -170,7 +170,7 @@ async function setMap(type, server) {
         case 'Domain9':  imgUrl = 'Domain91.png';   jsonFile = 'domain9.json'; weeklyjson = weeklyT; break;
         case 'Bazaar':    imgUrl = 'Bazaar.png';     jsonFile = 'Bazaar.json'; weeklyjson = weeklyT; break;
         case 'Metro':    imgUrl = 'Metro.png';     jsonFile = 'metro.json'; weeklyjson = weeklyN; break;
-        default:         imgUrl = 'Domain9.png';   jsonFile = 'domain9.json'; weeklyjson = weeklyT; break;
+        default:         imgUrl = 'Domain91.png';   jsonFile = 'domain9.json'; weeklyjson = weeklyT; break;
     }
 
     imageOverlay = L.imageOverlay(imgUrl, [[-90,-180],[90,180]]).addTo(map);
@@ -188,11 +188,11 @@ const radios = document.querySelectorAll('input[type="radio"].server');
 
 radios.forEach(radio => {
     radio.addEventListener('change', () => {
-        setMap(document.querySelector('input[name="server"]:checked').value);
+        setMap("Mirroria", document.querySelector('input[name="server"]:checked').value);
     });
 });
 
-setMap('Domain9', "EU");
+setMap('Mirroria', "EU");
 
 async function getWeekly(file) {
     try {
