@@ -139,7 +139,17 @@ async function loadPoints(jsonFile, weeklyPromise) {
         const weekly = await weeklyPromise;
         const res = await fetch(jsonFile);
         const data = await res.json();
-        const filteredData = data.filter(p => weekly.includes(p.number));
+        let filteredData = [];
+        data.forEach(p=>{
+            if(p.number.split(' ')[1])
+            {
+                if(weekly.includes(p.number.split(' ')[0]) || weekly.includes(p.number.split(' ')[1]))
+                    filteredData.push(p);
+            }
+            else if(weekly.includes(p.number))
+                filteredData.push(p);
+
+        })
         filteredData.forEach(p => addMarker(p));
     } catch (e) { console.error('Ошибка загрузки данных', e); }
 }
