@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Интерактивная Карта с Изображением</title>
+<title>Weekly Terron and Norn</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
     .leaflet-control-attribution {display:none;}
@@ -30,10 +30,6 @@
         max-width: 90%;
         max-height: 90%;
     }
-    /* #description, #reward {
-        display: flex;
-        align-items: center;
-    } */
     .questItem p, .reward p {
         margin: 0;
     }
@@ -150,6 +146,7 @@ async function loadPoints(jsonFile, weeklyPromise) {
                 filteredData.push(p);
 
         })
+        console.log(data);
         filteredData.forEach(p => addMarker(p));
     } catch (e) { console.error('Ошибка загрузки данных', e); }
 }
@@ -196,7 +193,7 @@ radios.forEach(radio => {
     });
 });
 
-setMap('Metro', "EU");
+setMap('Domain9', "EU");
 
 async function getWeekly(file) {
     try {
@@ -238,7 +235,6 @@ function showInfo(data) {
 
     document.getElementById('description').innerHTML = data.description
 
-    //renderContent(data.description, document.getElementById('description'));
     renderContent(data.reward, document.getElementById('reward'));
 
     infoDiv.style.display = 'block';
