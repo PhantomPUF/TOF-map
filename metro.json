@@ -31,7 +31,7 @@
     "y": 65.85675647909318,
     "number":  "4",
     "npcName": "Meryl",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/4.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -40,7 +40,7 @@
     "y": 68.31814602144938,
     "number":  "5",
     "npcName": "Lily",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/5.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },  
@@ -49,7 +49,7 @@
     "y": 68.39918004344189,
     "number":  "6",
     "npcName": "Smilie",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/6.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -85,7 +85,7 @@
     "y": 76.32942711267002,
     "number":  "10",
     "npcName": "QIjie",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/10.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -119,10 +119,19 @@
   {
     "x": -52.03125,
     "y": 54.49556752187409,
-    "number":  "14 15",
-    "npcName": "Cooke or Egan",
-    "description": "Delivery Document to David or Find the lost sushi",
+    "number":  "14",
+    "npcName": "Cooke",
+    "description": "Delivery Document to David",
     "img": "Norn/14.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -52.03125,
+    "y": 54.49556752187409,
+    "number":  "15",
+    "npcName": "Egan",
+    "description": "Find the lost sushi",
+    "img": "Norn/15.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
   {
@@ -157,7 +166,7 @@
     "y": 63.37183226679281,
     "number":  "19",
     "npcName": "Anka",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/19.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -202,7 +211,7 @@
     "y": -72.91963546581482,
     "number":  "24",
     "npcName": "Asurada",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/24.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -220,7 +229,7 @@
     "y": -73.20131708476698,
     "number":  "26",
     "npcName": "Roslyn",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/26.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -283,7 +292,7 @@
     "y": -76.5883559487801,
     "number":  "33",
     "npcName": "Od777",
-    "description": "Take a photo",
+    "description": "📷",
     "img": "Norn/33.png",
     "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
@@ -299,12 +308,20 @@
   {
     "x": -99.53613281250001,
     "y": -78.33164847573174,
-    "number":  "35 36",
+    "number":  "35",
     "npcName": "Roslyn",
-    "description": "Submit DlicatcyX3 <img src='Icon/Norn/Icon_norn_ranquest_02.png'/> or Take a photo",
-    "description": "<table border='1'><thead><tr><th>Quest</th><th>Reward</th></tr></thead><tbody><tr><td><div class='item'><p>Submit DlicatcyX3</p><img src='Icon/Norn/Icon_norn_ranquest_02.png' style='max-width:50px'/></div></td><td><div class='item'><p>60 Norn</p><img src='Icon/Norn/Norn_nuoyuan.png'/></div></td></tr><tr><td><div class='item'><p>📷</p></div></td><td><div class='item'><p>40 Norn</p><img src='Icon/Norn/Norn_nuoyuan.png'/></div></td></tr></tbody></table>",
+    "description": "Submit DlicatcyX3 <img src='Icon/Norn/Icon_norn_ranquest_02.png'/>",
     "img": "Norn/36.png",
-    "reward": ""
+    "reward": "60 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
+  },
+  {
+    "x": -99.53613281250001,
+    "y": -78.33164847573174,
+    "number":  "36",
+    "npcName": "Roslyn",
+    "description": "📷",
+    "img": "Norn/36.png",
+    "reward": "40 Norn <img src='Icon/Norn/Norn_nuoyuan.png'/>"
   },
   {
     "x": -100.37109375,

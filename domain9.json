@@ -254,11 +254,20 @@
   {
     "x": 132.05566406250003,
     "y": -64.363065186029074,
-    "number":  "42 43",
+    "number":  "42",
     "npcName": "Ling Han",
-    "description": "<table border='1'><thead><tr><th>Quest</th><th>Reward</th></tr></thead><tbody><tr><td><div class='item'><p>5x Tusu Wine</p><img src='Icon/market/Jiuyu_Market_006.png' style='max-width:50px'/></div></td><td><div class='item'><p>300 Terron</p><img src='Icon/huobi/jiuyu_coin.png' style='max-width:50px'/></div></td></tr><tr><td><div class='item'><p>📷</p></div></td><td><div class='item'><p>2x Enlightenment Tablet</p><img src='Icon/market/Jiuyu_Market_008.png' style='max-width:50px'/></div></td></tr></tbody></table>",
+    "description": "5x Tusu Wine <img src='Icon/market/Jiuyu_Market_006.png'/> d><tr><th>Quest</th><th>Reward</th></tr></thead><tbody><tr><td><div class='item'><p>5x Tusu Wine</p><img src='Icon/market/Jiuyu_Market_006.png' style='max-width:50px'/></div></td><td><div class='item'><p>300 Terron</p><img src='Icon/huobi/jiuyu_coin.png' style='max-width:50px'/></div></td></tr><tr><td><div class='item'><p>📷</p></div></td><td><div class='item'><p>2x Enlightenment Tablet</p><img src='Icon/market/Jiuyu_Market_008.png' style='max-width:50px'/></div></td></tr></tbody></table>",
     "img": "Terron/42.png",
-    "reward": ""
+    "reward": "300 Terron <img src='Icon/huobi/jiuyu_coin.png'/>"
+  },
+  {
+    "x": 132.05566406250003,
+    "y": -64.363065186029074,
+    "number":  "43",
+    "npcName": "Ling Han",
+    "description": "📷",
+    "img": "Terron/43.png",
+    "reward": "2x Enlightenment Tablet <img src='Icon/market/Jiuyu_Market_008.png'/>"
   },
   {
     "x": 118.94921875000001,
