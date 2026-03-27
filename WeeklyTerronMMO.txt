@@ -1,26 +1,26 @@
 (Mirroria)
-0:00 1 Gnonno 📷
-0:30 4 Shelly (3x Forging Hammer)
+0:20 3 Lyra (5x Fruity Rice Punch)
+0:50 6 Shelly (5x Roughstone)
 
 (Ignisville)
-2:10 14 Bioresearcher NPC 👹
-2:40 17 Rong Jin (3x Auspicious Animal Seal)
-3:10 20 Qin Ling NPC 👹
+1:20 9 Yulan 📷
+2:10 14 Bioresearcher NPC 👹 ("Dustmouth" Hillzer – Perfect Ascension Elixir ×2)
+2:20 15 Liu (3x Composite Stone Slate)
+2:50 18 Rong Jin (3x Gold Vein Ointment)
+3:10 20 Qin Ling NPC 👹 ("Nightmareguard" Clearway – Bamboo Leaf Brew ×2)
 
 (Joltville)
-3:20 21 Huai Shan NPC (3x Spirit Beast Fleece)
-3:30 22 Liu 📷
+3:50 24 Huang 📷
 
 (Joltville Mansion)
-4:30 28 Ji Yu (3x Jadestone Tea Set)
-4:40 29 Yulan (3x Bone Plaster)
-5:00 31 Fu Li (2x Titabalt Longsword)
+4:20 27 Ji Yu (2x Blackflame Censer)
 5:10 32 Domain Guard NPC ✉️
 
 (Joltville Bazaar)
-5:20 33 Domain Guard NPC 👹
+5:20 33 Domain Guard NPC 👹 (Zhe Er – Wang's Dragon Amrita ×2)
+5:30 34 NPC (3x Gold Vein Ointment)
 6:10 38 Zi Yan NPC ✉️
 
 (Marshville)
+6:30 40 NPC 👹
 7:00 43 Ling Han 📷
-7:10 44 Yan Miao 📷
