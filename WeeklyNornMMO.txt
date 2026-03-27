@@ -1,22 +1,27 @@
-----------------------------------------------------------------------------
 (Aesperia Tower of Fantasy Indoor Zone F1)
 3:01 4 Meryl - Take a photo
-4:09 6 Smilie - Take a photo
+3:28 5 Lily - Take a photo
 4:27 7 Anka - Submit Colossal Matcha Parfait
+
+(Schuder Electronics Central District Branch)
+5:02 8 Nola - Repair Surveillance turret
 
 (Observation Deck Subway Station)
 8:35 11 Gunpowder - Eliminate Aberrants X3
-9:08 12 Esther - Submit Transit E-Card
 
 (Aurora Reception Area)
-11:34 15 Egan - Find the lost sushi
+10:47 14 Cooke - Delivery Document to David
 
 (Aurora Industries Office Area)
-12:54 17 Nola - Submit R8 Power Engine
 13:12 18 Eugene - Copy a file
+
+(Fringe Zone Subway Station)
+16:03 22 (Liwen) - Eliminate Aberrants X3
+
+(Astra Station)
+17:37 25 Gray Fox - Submit Platinum Witch's Key
 
 (Star Isle Hotel)
 20:50 31 (Dr. Pepper) - Eliminate WL6
 20:59 32 Baggis - Eliminate Aerial Defense Force
-21:17 33 Od777 - Take a photo
-22:42 37 Kelli - Submit Dessert Coupon
+22:58 38 Ling Ling - Submit Perception Eyewear
