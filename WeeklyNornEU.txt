@@ -1,23 +1,25 @@
 (Aesperia Tower of Fantasy Indoor Zone F1)
-0:40 2 (Goering) - Submit Bag of Coffee Beans
 3:01 4 Meryl - Take a photo
 4:09 6 Smilie - Take a photo
-4:27 7 Anka - Submit Colossal Matcha Parfait
 
-(Observation Deck Subway Station)
-9:41 13 (Mojie) - Eliminate Armored Defense Force
+(Schuder Electronics Central District Branch)
+5:02 8 Nola - Repair Surveillance turret
 
 (Aurora Reception Area)
-10:47 14 Cooke - Delivery Document to David
+11:34 15 Egan - Find the lost sushi
 
 (Aurora Industries Office Area)
-12:54 17 Nola - Submit R8 Power Engine
-13:12 18 Eugene - Copy a file
+11:53 16 Angela - Store package
+13:47 19 Anka - Take a photo
+
+(Aurora Industries Underground Laboratory)
+14:03 20 Lorraine - Repair Surveillance turret
 
 (Fringe Zone Subway Station)
-16:03 22 (Liwen) - Eliminate Aberrants X3
+15:39 21 Jasmyn - Eliminate Aberrants X3
 
 (Star Isle Hotel)
-19:59 29 Carol - Eliminate Vending Machine
+20:50 31 (Dr. Pepper) - Eliminate WL6
 21:17 33 Od777 - Take a photo
-22:10 35 Roslyn - Submit Dlicatcy X3
+22:28 36 Roslyn - Take a photo
+22:42 37 Kelli - Submit Dessert Coupon
