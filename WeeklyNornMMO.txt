@@ -1,27 +1,25 @@
 (Aesperia Tower of Fantasy Indoor Zone F1)
-3:01 4 Meryl - Take a photo
+0:00 1 Meryl - Submit White Rose Insignia
 3:28 5 Lily - Take a photo
-4:27 7 Anka - Submit Colossal Matcha Parfait
 
 (Schuder Electronics Central District Branch)
 5:02 8 Nola - Repair Surveillance turret
 
 (Observation Deck Subway Station)
 8:35 11 Gunpowder - Eliminate Aberrants X3
+9:41 13 (Mojie) - Eliminate Armored Defense Force
 
 (Aurora Reception Area)
-10:47 14 Cooke - Delivery Document to David
+11:34 15 Egan - Find the lost sushi
 
 (Aurora Industries Office Area)
 13:12 18 Eugene - Copy a file
+13:47 19 Anka - Take a photo
 
 (Fringe Zone Subway Station)
 16:03 22 (Liwen) - Eliminate Aberrants X3
 
-(Astra Station)
-17:37 25 Gray Fox - Submit Platinum Witch's Key
-
 (Star Isle Hotel)
-20:50 31 (Dr. Pepper) - Eliminate WL6
-20:59 32 Baggis - Eliminate Aerial Defense Force
-22:58 38 Ling Ling - Submit Perception Eyewear
+21:17 33 Od777 - Take a photo
+22:28 36 Roslyn - Take a photo
+23:29 39 Molly - Submit Locket Necklace
