@@ -4,17 +4,17 @@
 
 (Ignisville)
 1:10 8 Lan (5x Steamed Bun)
-1:20 9 Yulan 📷
 2:10 14 Bioresearcher NPC 👹
-2:40 17 Rong Jin (3x Auspicious Animal Seal)
+2:50 18 Rong Jin (3x Gold Vein Ointment)
 3:10 20 Qin Ling NPC 👹
 
 (Joltville)
 3:30 22 Liu 📷
-4:00 25 NPC 📷
+4:10 26 Fu Yu NPC (3x Bamboo Shoots)
 
 (Joltville Mansion)
 4:20 27 Ji Yu (2x Blackflame Censer)
+4:40 29 Yulan (3x Bone Plaster)
 5:10 32 Domain Guard NPC ✉️
 
 (Joltville Bazaar)
